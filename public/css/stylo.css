@@ -1,0 +1,76 @@
+html {
+  background-color: #1d1d1d;
+}
+
+a,
+h1,
+label {
+  color: #80bd01;
+}
+
+a:hovaer {
+  color: rgba(128, 189, 1, 0.75);
+}
+
+.fildset {
+  padding: 1rem;
+  border: medium solid #80bd01;
+}
+
+.logo {
+  display: block;
+  margin: 1rem auto;
+  width: 450px;
+  height: 150px;
+  background-color: url("../img/node-favicon.png") no-repeat center;
+  background-size: contain;
+}
+
+.error {
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: #80bd01;
+  color: #fff;
+}
+
+.posteres {
+  max-width: 100px;
+}
+
+.table {
+  width: 100%;
+}
+.table td,
+.table th {
+  padding: 1rem;
+}
+.table tr:first-child {
+  background-color: #291623;
+  color: #80bd01;
+}
+.table tr:nth-child(even) {
+  background-color: #ccc;
+}
+.table tr:nth-child(odd):not(:first-child) {
+  background-color: #eee;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: #80bd01;
+  cursor: pointer;
+}
+.button:hover {
+  opacity: 0.75;
+}
+.add {
+  background-color: #0b0;
+}
+
+.edit{
+  background-color: #0871b2;
+}
+ .delete{
+    background-color: #d23641;
+ }

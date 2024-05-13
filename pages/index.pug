@@ -1,0 +1,46 @@
+extends layout 
+
+block content
+    secttion.container 
+        div.item.logo
+        div.item 
+            h1 
+                a(href="/crud")= title 
+        article.item
+            if data.length
+                table.table  
+                    tr 
+                        th ID
+                        th Nombre
+                        th Modelo
+                        th Description
+                        th Precio
+                        th Poster 
+                        th(colspan="2")
+                            form(method="GET" action="/agregar")
+                                input.button.add(type="submit" value="Agregar")
+                    each product in data
+                        tr  
+                            td #{product.product_id} 
+                            td #{product.product_name} 
+                            td #{product.product_model}
+                            td #{product.product_description}
+                            td #{product.price}
+                            td 
+                                img(src=`${product.img}` alt=`${product.name}`)
+                            td  
+                                form(method="GET" action=`/editar/${product.product_id}`)
+                                    input.button.edit(type="submit" value="Editar")
+
+                            td  
+                                form(method="POST" action=`/eliminar/${product.product_id}`)
+                                    input.button.delete(type="button" value="Eliminar" onclick="eliminar(this)")
+                script.
+                    function eliminar(input)
+                    {
+                        var deleteOk = confirm("Estas seguro de que quieres elimanr?")
+                        return (deleteOk) ? input.parentNode.submit() : false
+                    }     
+            else 
+                p.error No Existen Dato        
+            

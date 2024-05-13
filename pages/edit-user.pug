@@ -1,0 +1,33 @@
+extends layout 
+
+block content
+    secttion.container 
+        div.item.logo
+        div.item 
+            h1 
+                a(href="/")= title 
+        div.item.center
+            form.form(method="POST" action=`/releace/${datos[0].usuario_id}`)
+                fieldset 
+                    div.container.p1
+                        label.item.i-b.v-top.ph3.p_25.right(for="usuario_id") ID: 
+                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text" name="usuario_id", value=`${datos[0].usuario_id}` required)
+                    div.container.p1
+                        label.item.i-b.v-top.ph3.p_25.right(for="usuario_name") Name: 
+                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text" name="usuario_name",value=`${datos[0].usuario_name}` required)
+                    div.container.p1
+                        label.item.i-b.v-top.ph3.p_25.right(for="user_email") Email: 
+                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text" name="user_email",value=`${datos[0].user_email}` required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="user_password") Password: 
+                        input.item.i-b.v-top.ph9.p_25#title(type="text" name="user_password",value=`${datos[0].user_password}` required)
+                    div.container.p1 
+                        input.item.ph4.mauto.button.add(type="submit" value="Release") 
+                    div    
+                        form(method="POST" action=`/delete/${datos[0].usuario_id}`)
+                            input.item.ph4.mauto.button.delete(type="button" value="Delete" onclick="eliminar(this)")
+                script.
+                    function eliminar(input){
+                            var deleteOk = confirm(`Estas seguro de que quieres elimanr ?`)
+                                return (deleteOk) ? input.parentNode.submit() : false
+                            }                      

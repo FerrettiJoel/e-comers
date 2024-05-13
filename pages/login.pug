@@ -1,0 +1,25 @@
+extends layout 
+
+block content
+    secttion.container 
+        div.item.logo
+        div.item 
+            h1 
+                a(href="/")= title 
+        div.item.center
+            form.form(method="POST" action="/")
+                fieldset 
+                    div.container.p1
+                        label.item.i-b.v-top.ph3.p_25.right(for="usuario_name") Name: 
+                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text", name="usuario_name" required)
+                    div.container.p1
+                        label.item.i-b.v-top.ph3.p_25.right(for="user_email") Email: 
+                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text", name="user_email" required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="user_password") Password: 
+                        input.item.i-b.v-top.ph9.p_25#title(type="password", name="user_password" required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="confirmPassword") Confirm Password: 
+                        input.item.i-b.v-top.ph9.p_25#title(type="password", name="confirmPassword" required)
+                    div.container.p1 
+                        input.item.ph4.mauto.button.add(type="submit", value="Create")                     

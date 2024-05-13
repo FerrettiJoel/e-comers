@@ -1,0 +1,31 @@
+extends layout 
+
+block content
+    secttion.container 
+        div.item.logo
+        div.item 
+            h1 
+                a(href="/")= title 
+        div.item.center
+            form.form(method="POST" action=`/actualizar/${data[0].product_id}`)
+                fieldset  
+                    div.container.p1
+                        label.item.i-b.v-top.ph3.p_25.right(for="product_id") Producto id: 
+                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text" name="product_id", value=`${data[0].product_id}` required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="product_name") Nombre: 
+                        input.item.i-b.v-top.ph9.p_25#title(type="text" name="product_name",value=`${data[0].product_name}` required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="product_model") Modelo: 
+                        input.item.i-b.v-top.ph9.p_25#releace_year(type="text" name="product_model",value=`${data[0].product_model}` required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="producto_description") Descripcion: 
+                        input.item.i-b.v-top.ph9.p_25#rating(type="text" name="product_description",value=`${data[0].product_description}` required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="price") Precio: 
+                        input.item.i-b.v-top.ph9.p_25#imagen(type="text" name="price",value=`${data[0].price}` required)
+                    div.container.p1 
+                        label.item.i-b.v-top.ph3.p_25.right(for="img") Imagen: 
+                        input.item.i-b.v-top.ph9.p_25#imagen(type="text" name="img",value=`${data[0].img}` required)
+                    div.container.p1 
+                        input.item.ph4.mauto.button.add(type="submit" value="Agregar")                     
