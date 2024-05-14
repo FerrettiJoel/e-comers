@@ -4,7 +4,19 @@ block content
     secttion.container 
         div.item.logo
         div.item 
-            h1 
+            h1  
                 a(href="/")= title
-                    form(method="GET" action="/registrar")
-                        input(type="submit", value="Login")
+                div
+                    fieldset 
+                        div.container.p1
+                            label.item.i-b.v-top.ph3.p_25.right(for="user_email") Email: 
+                            input.item.i-b.v-top.ph9.p_25#user_email(type="text", name="user_email", required)                    
+                            label.item.i-b.v-top.ph3.p_25.right(for="user_password") Password: 
+                            input.item.i-b.v-top.ph9.p_25#user_password(type="password", name="user_password", required)
+                        div.container.p1
+                            form.form(metod="POST" action="/iniciarsecion")
+                                input(type="submit", value="Init")
+                        div.container.p1        
+                            form.form(method="GET" action="/registrar")
+                                input(type="submit", value="Login")
+                        

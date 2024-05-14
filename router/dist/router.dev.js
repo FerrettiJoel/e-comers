@@ -18,19 +18,25 @@ function error404(req, res) {
 }
 
 router.use(blanca_rossi).get("/", function (req, res) {
-  res.render("inicio");
+  res.render("inicio", {
+    title: "Login"
+  });
+}).post("/iniciarsecion", function (req, res) {
+  var _req$body = req.body,
+      user_email = _req$body.user_email,
+      user_password = _req$body.user_password;
 }).get("/registrar", function (req, res) {
   res.render("login", {
     title: "Create a Count"
   });
 }).post("/", formValidation.validation, function _callee(req, res) {
-  var _req$body, usuario_name, user_email, user_password, passworEncripted, usuario;
+  var _req$body2, usuario_name, user_email, user_password, passworEncripted, usuario;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _req$body = req.body, usuario_name = _req$body.usuario_name, user_email = _req$body.user_email, user_password = _req$body.user_password;
+          _req$body2 = req.body, usuario_name = _req$body2.usuario_name, user_email = _req$body2.user_email, user_password = _req$body2.user_password;
           _context.prev = 1;
           _context.next = 4;
           return regeneratorRuntime.awrap(bcrypt.hash(user_password, 10));

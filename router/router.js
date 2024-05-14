@@ -20,7 +20,12 @@ function error404(req, res) {
 router
   .use(blanca_rossi)
   .get("/", (req, res) => {
-    res.render("inicio");
+    res.render("inicio", {title: "Login"});
+  })
+  .post("/iniciarsecion", (req,res)=>{
+    const {user_email, user_password} = req.body;
+
+    
   })
   .get("/registrar", (req, res) => {
     res.render("login", { title: "Create a Count" });
