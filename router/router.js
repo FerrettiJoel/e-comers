@@ -4,7 +4,7 @@ var blanca_rossi = require("../models/blanca-rossi.js"),
   express = require("express"),
   bcrypt = require("bcryptjs"),
   router = express.Router(),
-  formValidation = require('../middlewweares/validaction.js');
+  formValidation = require("../middlewweares/validaction.js");
 
 function error404(req, res) {
   let error = new Error(),
@@ -20,13 +20,29 @@ function error404(req, res) {
 router
   .use(blanca_rossi)
   .get("/", (req, res) => {
-    res.render("inicio", {title: "Login"});
+    res.render("inicio", { title: "BLANCA ROSSI" });
   })
-  .post("/iniciarsecion", (req,res)=>{
-    const {user_email, user_password} = req.body;
+  .get("/iniciarsesion", (req, res) => {
+    res.render("init", { title: "iniciar sesion" });
+  })
+  .post("/entrar", (req, res) => {
+    const user = req.body.user_email;
+    const pass = req.body.user_password;
+    console.log(user, pass);
 
-    
+    req.getConnection((err, blanca_rossi) => {
+      blanca_rossi.query('SELECT * FROM usuarios WHERE user_email = ? ', user, async (err, rows) => {
+          console.log(err, "__", rows);
+          if (rows.length > 1 || (await bcrypt.compare(pass, rows[0].user_password))) {
+            res.render("inicio", {title: "login",});
+          } else {
+            res.render("welcome", { title: "welcome" });
+          }
+        }
+      );
+    });
   })
+
   .get("/registrar", (req, res) => {
     res.render("login", { title: "Create a Count" });
   })
@@ -34,36 +50,40 @@ router
     const { usuario_name, user_email, user_password } = req.body;
     try {
       let passworEncripted = await bcrypt.hash(user_password, 10);
-     
+
       let usuario = {
         usuario_name: usuario_name,
         user_email: user_email,
         user_password: passworEncripted,
       };
       req.getConnection((err, blanca_rossi) => {
-      console.log(usuario);
-        blanca_rossi.query("INSERT INTO usuarios SET ?",usuario ,(err, rows) => {
-          return (err) ? res.redirect("/registrar")  : res.redirect("/")
-        });
+        console.log(usuario);
+        blanca_rossi.query(
+          "INSERT INTO usuarios SET ?",
+          usuario,
+          (err, rows) => {
+            return err ? res.redirect("/registrar") : res.redirect("/");
+          }
+        );
       });
     } catch (err) {
       throw err;
     }
-  })
+  });
 
-  // .post("/", (req, res) => {
-  //   req.getConnection((err, blanca_rossi) => {
-  //     let user = {
-  //       usuario_name: req.body.usuario_name,
-  //       user_email: req.body.user_email,
-  //       user_password: req.body.user_password,
-  //     };
-  //     console.log(user);
-  //     blanca_rossi.query("INSERT INTO usuarios SET ?", user, (err, rows) => {
-  //       return err ? res.redirect("/registrar") : res.redirect("/");
-  //     });
-  //   });
-  // });
+// .post("/", (req, res) => {
+//   req.getConnection((err, blanca_rossi) => {
+//     let user = {
+//       usuario_name: req.body.usuario_name,
+//       user_email: req.body.user_email,
+//       user_password: req.body.user_password,
+//     };
+//     console.log(user);
+//     blanca_rossi.query("INSERT INTO usuarios SET ?", user, (err, rows) => {
+//       return err ? res.redirect("/registrar") : res.redirect("/");
+//     });
+//   });
+// });
 
 router
   .get("/edit/:usuario_id", (req, res) => {
@@ -99,7 +119,10 @@ router
         user_password: req.body.user_password,
       };
       console.log(user);
-      blanca_rossi.query("UPDATE usuarios SET ? WHERE usuario_id = ?", [user, user.usuario_id], (err, rows) => {
+      blanca_rossi.query(
+        "UPDATE usuarios SET ? WHERE usuario_id = ?",
+        [user, user.usuario_id],
+        (err, rows) => {
           return err ? res.redirect("/edit/:usuario_id") : res.redirect("/");
         }
       );

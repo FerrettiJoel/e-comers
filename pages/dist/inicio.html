@@ -13,28 +13,15 @@
     <secttion class="container"> 
       <div class="item logo"></div>
       <div class="item"> 
-        <h1> <a href="/"></a>
-          <div>
-            <fieldset> 
-              <div class="container p1">
-                <label class="item i-b v-top ph3 p_25 right" for="user_email">Email: </label>
-                <input class="item i-b v-top ph9 p_25" id="user_email" type="text" name="user_email" required>
-                <label class="item i-b v-top ph3 p_25 right" for="user_password">Password: </label>
-                <input class="item i-b v-top ph9 p_25" id="user_password" type="password" name="user_password" required>
-              </div>
-              <div class="container p1">
-                <form class="form" metod="POST" action="/iniciarsecion">
-                  <input type="submit" value="Init">
-                </form>
-              </div>
-              <div class="container p1">       
-                <form class="form" method="GET" action="/registrar">
-                  <input type="submit" value="Login">
-                </form>
-              </div>
-            </fieldset>
-          </div>
-        </h1>
+        <h1> <a href="/">
+            <div class="container p1">       
+              <form class="form" method="GET" action="/registrar"></form>
+              <input type="submit" value="Login">
+            </div>
+            <div class="container p1">       
+              <form class="form" method="GET" action="/iniciarsesion"></form>
+              <input type="submit" value="iniciarsesion">
+            </div></a></h1>
       </div>
     </secttion>
   </body>
