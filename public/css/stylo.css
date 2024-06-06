@@ -2,15 +2,15 @@ html {
   background-color: #1d1d1d;
 }
 
-a,
+/* a,
 h1,
 label {
   color: #80bd01;
-}
+} */
 
-a:hovaer {
+/* a:hovaer {
   color: rgba(128, 189, 1, 0.75);
-}
+} */
 
 .fildset {
   padding: 1rem;
@@ -35,6 +35,7 @@ a:hovaer {
 
 .posteres {
   max-width: 100px;
+  
 }
 
 .table {
@@ -74,3 +75,4 @@ a:hovaer {
  .delete{
     background-color: #d23641;
  }
+

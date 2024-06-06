@@ -1,4 +1,4 @@
-var blanca_rossi = require("../models/blanca-rossi.js"),
+ var blanca_rossi = require("../models/blanca-rossi.js"),
     validator = require("validator"),
     passwordValidator = require("password-validator");
 

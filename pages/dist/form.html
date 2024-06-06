@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/owl_favicon.jpg">
+    <link rel="icon" href="./public/img/node-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css">
+  </head>
+  <body class="body">
+    <div class="item"> 
+      <h1 class="h1"><a href="/"></a></h1>
+    </div>
+    <section class="section">
+      <form class="contact-form" action="https://formsubmit.co/7a745a3ca7a4114cff036f2145ef5a7e" method="POST">
+        <h2>Envíanos tus comentarios</h2>
+        <input class="forminput" type="text" name="name" placeholder="Escribe tu nombre" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜüs]+$" required>
+        <input class="forminput" type="email" name="email" placeholder="Escribe tu email" title="Email incorrecto" required>
+        <input class="forminput" type="text" name="subject" placeholder="Asunto a tratar" title="El Asunto es requerido" required>
+        <textarea name="comments" cols="50" rows="5" placeholder="Escribe tus comentarios" title="Tu comentario no debe exceder los 255 caracteres" data-pattern="^.{1,255}$" required></textarea>
+        <input class="btn-grande" type="submit" value="Enviar">
+        <div class="contact-form-loader none"><img class="imgloader" src="./img/tube-spinner.svg" alt="Cargando"></div>
+        <div class="contact-form-response none">
+          <p>Los datos han sido enviados</p>
+        </div>
+      </form>
+    </section>
+  </body>
+  <script src="/js/main.js" type="module"></script>
+  <script src="/js/hamburguer-menu.js" type="module"></script>
+  <script src="/js/form.js" type="module"></script>
+</html>

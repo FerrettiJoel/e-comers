@@ -11,6 +11,7 @@
   "author": "Joel Ferretti",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "connect-sqlite3": "^0.9.15",
@@ -23,6 +24,7 @@
     "express-session": "^1.18.0",
     "favicon": "^0.0.2",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
     "mkdirp": "^1.0.4",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

@@ -3,6 +3,7 @@
 
 var express = require("express"),
   favicon = require("serve-favicon"),
+  coockieParser = require('cookie-parser'),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
   pug = require('pug'),
@@ -22,10 +23,10 @@ app
   .use(favicon(faviconURL))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
+  .use(coockieParser())
   .use(morgan("dev"))
   .use(publicDir)
-  .use(routes);
-
+  .use(routes)
  
  
 

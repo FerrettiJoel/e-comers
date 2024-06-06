@@ -1,25 +1,47 @@
 extends layout 
 
 block content
-    secttion.container 
-        div.item.logo
-        div.item 
-            h1 
-                a(href="/")= title 
-        div.item.center
-            form.form(method="POST" action="/")
-                fieldset 
-                    div.container.p1
-                        label.item.i-b.v-top.ph3.p_25.right(for="usuario_name") Name: 
-                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text", name="usuario_name" required)
-                    div.container.p1
-                        label.item.i-b.v-top.ph3.p_25.right(for="user_email") Email: 
-                        input.item.i-b.v-top.ph9.p_25#movie_id(type="text", name="user_email" required)
-                    div.container.p1 
-                        label.item.i-b.v-top.ph3.p_25.right(for="user_password") Password: 
-                        input.item.i-b.v-top.ph9.p_25#title(type="password", name="user_password" required)
-                    div.container.p1 
-                        label.item.i-b.v-top.ph3.p_25.right(for="confirmPassword") Confirm Password: 
-                        input.item.i-b.v-top.ph9.p_25#title(type="password", name="confirmPassword" required)
-                    div.container.p1 
-                        input.item.ph4.mauto.button.add(type="submit", value="Create")                     
+    div.container
+        h1.h1.h1hover
+            a(href="/")= title 
+    div
+        form(method="POST" action="/")
+            fieldset
+                div.content
+                    label(for="usuario_name") Name 
+                    input.INPUT(type="text" name="usuario_name" required)
+                div.content
+                    label(for="user_email") Email  
+                    input.INPUT(type="text" name="user_email" required)
+                div.content   
+                    label(for="user_password") Password 
+                    input.INPUT(type="password" name="user_password" required)
+                div.content   
+                    label(for="confirmPassword") Confirm Password
+                    input.INPUT(type="password" name="confirmPassword" required)
+                div.content     
+                    input.btn-g.INPUT(type="submit" value="Create")                     
+    footer 
+        div.divdelparrafo
+            h4.pdeldiv Mediod de pagos 
+                div.divdelaimagen
+                    img.imgdelfooter(src="./img/mercadopagp.jpeg" alt="Mercado pago")
+                    img.imgdelfooter(src="./img/cash_40532.png" alt="")
+                    img.imgdelfooter(src="./img/handshake-done-deal-free-vector.jpg" alt="")
+        div.divdelparrafo
+            h4.pdeldiv Medios de envio
+                div.divdelaimagen    
+                    img.imgdelfooter(src="./img/correo-argentino.png" alt="")        
+                    img.imgdelfooter(src="./img/personalizado.png" alt="")        
+                    img.imgdelfooter(src="./img/retiro-local.png" alt="")   
+                    img.imgdelfooter(src="./img/handshake-done-deal-free-vector.jpg" alt="")     
+
+        div.divdelparrafo 
+            h4.pdeldiv Nuestras redes sociales
+                p.text-p blancarossi@blancarossi.com
+        div.divdelparrafo 
+            h4.pdeldiv Contacto 
+                p.text-p blancarossi.store@gmail.com
+                p.text-p 2236953368
+                p.text-p Alberti 2018. loc 24
+                p.text-p Botón de arrepentimiento 

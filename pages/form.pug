@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+    div.item 
+        h1.h1
+            a(href="/")= title 
+    section.section
+        form.contact-form(action="https://formsubmit.co/7a745a3ca7a4114cff036f2145ef5a7e" method="POST")
+            h2 Envíanos tus comentarios
+            input.forminput(type="text" name="name" placeholder="Escribe tu nombre" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required)
+            input.forminput(type="email" name="email" placeholder="Escribe tu email" title="Email incorrecto"  required)
+            input.forminput(type="text" name="subject" placeholder="Asunto a tratar" title="El Asunto es requerido" required)
+            textarea(name="comments" cols="50" rows="5" placeholder="Escribe tus comentarios" title="Tu comentario no debe exceder los 255 caracteres" data-pattern="^.{1,255}$" required)
+            input.btn-grande(type="submit" value="Enviar")
+            div.contact-form-loader.none
+                img.imgloader(src="./img/tube-spinner.svg" alt="Cargando")
+            div.contact-form-response.none
+                p Los datos han sido enviados
+
+
+//- pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"

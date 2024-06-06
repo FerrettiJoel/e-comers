@@ -1,10 +1,15 @@
 "use strict";
 
+require("dotenv").config();
 var blanca_rossi = require("../models/blanca-rossi.js"),
   express = require("express"),
-  bcrypt = require("bcryptjs"),
+  bcrypt = require("bcrypt"),
   router = express.Router(),
-  formValidation = require("../middlewweares/validaction.js");
+  formValidation = require("../middlewweares/validaction.js"),
+  jwt = require("jsonwebtoken"),
+  middleware = require("../middlewweares/isLogin.js");
+const { error } = require("console");
+const { promisify } = require("util");
 
 function error404(req, res) {
   let error = new Error(),
@@ -20,27 +25,73 @@ function error404(req, res) {
 router
   .use(blanca_rossi)
   .get("/", (req, res) => {
-    res.render("inicio", { title: "BLANCA ROSSI" });
+    req.getConnection((err, blanca_rossi) => {
+      blanca_rossi.query("SELECT * FROM products", (err, rows) => {
+        console.log(err, "---", rows);
+        let locals = {
+          title: "Blanca Rossi",
+          data: rows,
+        };
+        res.render("inicio", locals);
+      });
+    });
   })
+
   .get("/iniciarsesion", (req, res) => {
     res.render("init", { title: "iniciar sesion" });
   })
-  .post("/entrar", (req, res) => {
+  .post("/entrar", (req, res, next) => {
     const user = req.body.user_email;
     const pass = req.body.user_password;
-    console.log(user, pass);
 
     req.getConnection((err, blanca_rossi) => {
-      blanca_rossi.query('SELECT * FROM usuarios WHERE user_email = ? ', user, async (err, rows) => {
-          console.log(err, "__", rows);
-          if (rows.length > 1 || (await bcrypt.compare(pass, rows[0].user_password))) {
-            res.render("inicio", {title: "login",});
+      blanca_rossi.query(
+        "SELECT * FROM usuarios WHERE user_email = ?",
+        user,
+        async (err, rows) => {
+          const usuario = rows[0];
+
+          if (
+            rows < 1 ||
+            !(await bcrypt.compare(pass, usuario.user_password))
+          ) {
+            res.render("inicio", { title: "login" });
+            console.log("contrsenha invalida");
           } else {
-            res.render("welcome", { title: "welcome" });
+            const token = generateToken(usuario.usuario_id);
+            const cookieOptions = {
+              expires: new Date(
+                Date.now() +
+                  process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+              ),
+              httpOnly: true,
+            };
+            res.cookie("login", `${token}`, cookieOptions);
+
+            const tokeen = req.cookies.login;
+            if (tokeen) {
+              const decoded = await promisify(jwt.verify)(
+                req.cookies.login,
+                process.env.JWT_SECRET
+              );
+              const tokenParseado = JSON.parse(JSON.stringify(decoded));
+              console.log("....", tokenParseado);
+            }
           }
         }
       );
     });
+  });
+function generateToken(id) {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+}
+
+router
+  .get("/logout", (req, res) => {
+    res.cookie("login", "", { maxAge: 1 });
+    res.redirect("/");
   })
 
   .get("/registrar", (req, res) => {
@@ -70,20 +121,6 @@ router
       throw err;
     }
   });
-
-// .post("/", (req, res) => {
-//   req.getConnection((err, blanca_rossi) => {
-//     let user = {
-//       usuario_name: req.body.usuario_name,
-//       user_email: req.body.user_email,
-//       user_password: req.body.user_password,
-//     };
-//     console.log(user);
-//     blanca_rossi.query("INSERT INTO usuarios SET ?", user, (err, rows) => {
-//       return err ? res.redirect("/registrar") : res.redirect("/");
-//     });
-//   });
-// });
 
 router
   .get("/edit/:usuario_id", (req, res) => {
@@ -145,6 +182,9 @@ router
         }
       );
     });
+  });
+  router.get("/contacto", (req, res) => {
+    res.render("form", {title: "Blanca Rossi"});
   });
 
 router

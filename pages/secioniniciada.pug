@@ -1,14 +1,12 @@
 extends layout 
 
 block content
-    header.Header
-        h1.dancing-script
-            a(href="/")= title
-
-        form(method="GET" action="/registrar") 
-            input.btn-grande.input(type="submit" value="Login")
-        form(method="GET" action="/iniciarsesion")
-            input.btn-grande.input(type="submit" value="iniciarsesion")
+    secttion.cont
+        h2= title      
+        form(method="GET" action="/logout")
+            input.btn-grande(type="submit" value="logout")
+    figure.secion-img   
+        img(src="./img/blancarossi.png" alt="blancarossi")
     asside.panel
         nav.menu
             ul 
@@ -19,11 +17,10 @@ block content
                 li 
                     a(href="/informacion") Informacion  
                 li 
-                    a(href="/iniciarsesion") Cuenta
+                    a(href="/init") Cuenta
                 li 
-                    a(href="/contacto") Contacto
-                        
-    
+                    a(href="/pages/contacto.pug") Contacto 
+
     div.slider 
         div.slider-slides
             div.slider-slide.active
@@ -38,18 +35,15 @@ block content
     button.panel-btn.hamburger.hamburger--vortex
         span.hamburger-box
             span.hamburger-inner
-    
-    
-    
     div.div
         if data.length
             figure.grid-fliud
-                each product in data 
+                each product in data
                     div
                         img.img(src=`${product.img}` alt=`${product.product_name}`)
-                        figcaption  #{product.product_model}     
+                        figcaption #{product.product_model}     
                         figcaption $#{product.price}  
-    
+
     footer 
         div.divdelparrafo
             h4.pdeldiv Mediod de pagos 
@@ -64,7 +58,7 @@ block content
                     img.imgdelfooter(src="./img/personalizado.png" alt="")        
                     img.imgdelfooter(src="./img/retiro-local.png" alt="")   
                     img.imgdelfooter(src="./img/handshake-done-deal-free-vector.jpg" alt="")     
-        
+
         div.divdelparrafo 
             h4.pdeldiv Nuestras redes sociales
                 p.text-p blancarossi@blancarossi.com
@@ -73,4 +67,4 @@ block content
                 p.text-p blancarossi.store@gmail.com
                 p.text-p 2236953368
                 p.text-p Alberti 2018. loc 24
-                p.text-p Botón de arrepentimiento 
+                p.text-p Botón de arrepentimiento                     

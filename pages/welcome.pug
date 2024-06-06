@@ -4,5 +4,8 @@ block content
     secttion.container 
         div.item.logo
             div.item 
-                h1  
-                    a(href="/")= title
+                h1= title 
+                article.item 
+                    div.container.p1        
+                        form.form(method="GET" action="/logout")
+                            input.btn-grande(type="submit", value="logout")
