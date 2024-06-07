@@ -1,0 +1,15 @@
+extends layout 
+
+block content
+    section.header
+        h1.dancing-script.products
+            a(href="/")= title 
+    div.div
+        h2 Pantalones
+        if data.length
+            figure.grid-fliud
+                each product in data 
+                    div
+                        img.img(src=`${product.img}` alt=`${product.product_name}`)
+                        figcaption  #{product.product_model}     
+                        figcaption $#{product.price}

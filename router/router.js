@@ -182,18 +182,27 @@ router
         }
       );
     });
-  });
-  router.get("/contacto", (req, res) => {
-    res.render("form", {title: "Blanca Rossi"});
-  });
-
-router
+  })
+  .get("/contacto", (req, res) => {
+    res.render("form", { title: "Blanca Rossi" });
+  })
+  .get("/products", (req, res) => {
+    req.getConnection((err, blanca_rossi) => {
+      blanca_rossi.query("SELECT * FROM `products` WHERE product_name = 'pantalon'", (err, rows) => {
+        console.log(err, ".....", rows)
+        let locals = {
+          title: "Lista de productos",
+          data: rows,
+        };
+        res.render("productos", locals);
+      });
+    });
+  })
   .get("/crud", (req, res) => {
     req.getConnection((err, blanca_rossi) => {
       blanca_rossi.query("SELECT * FROM products", (err, rows) => {
-        console.log(err, "---", rows);
         let locals = {
-          title: "LISTA DE PRODUCTOS",
+          title: "NUESTROS PRODUCTOS",
           data: rows,
         };
         res.render("index", locals);

@@ -19,13 +19,13 @@ header{
   margin: 0.5rem;
   margin-top: auto;
   background-color: whitesmoke;
-  border-collapse: collapse                               ;
+  border-collapse: collapse;
+  text-align: center ;
 }
 
 header h1  {
   color: black;
   text-align: center;
-  border-collapse: collapse;
 }
 
 h1{
@@ -35,6 +35,11 @@ h1{
   width: 50%;
 
 }
+
+.products{
+  width: auto;
+}
+
 
 .boxsize{
   margin-top: 2rem;
@@ -98,6 +103,14 @@ a:hover{
   justify-content: flex-end;
   align-items: start;
   align-content: space-evenly;
+  text-align: center;
+}
+
+.psection  {
+  font-size: 30px;
+  text-decoration: none;
+  display: grid;
+
 }
 
 header form input:hover {

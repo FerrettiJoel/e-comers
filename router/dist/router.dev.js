@@ -209,18 +209,26 @@ router.get("/edit/:usuario_id", function (req, res) {
       return err ? next(new Error("registro no encontrado")) : res.redirect("/");
     });
   });
-});
-router.get("/contacto", function (req, res) {
+}).get("/contacto", function (req, res) {
   res.render("form", {
     title: "Blanca Rossi"
   });
-});
-router.get("/crud", function (req, res) {
+}).get("/products", function (req, res) {
+  req.getConnection(function (err, blanca_rossi) {
+    blanca_rossi.query("SELECT * FROM `products` WHERE product_name = 'pantalon'", function (err, rows) {
+      console.log(err, ".....", rows);
+      var locals = {
+        title: "Lista de productos",
+        data: rows
+      };
+      res.render("productos", locals);
+    });
+  });
+}).get("/crud", function (req, res) {
   req.getConnection(function (err, blanca_rossi) {
     blanca_rossi.query("SELECT * FROM products", function (err, rows) {
-      console.log(err, "---", rows);
       var locals = {
-        title: "LISTA DE PRODUCTOS",
+        title: "NUESTROS PRODUCTOS",
         data: rows
       };
       res.render("index", locals);

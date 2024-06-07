@@ -4,11 +4,17 @@ block content
     header.Header
         h1.dancing-script
             a(href="/")= title
-
-        form(method="GET" action="/registrar") 
-            input.btn-grande.input(type="submit" value="Login")
-        form(method="GET" action="/iniciarsesion")
-            input.btn-grande.input(type="submit" value="iniciarsesion")
+        section 
+            p 
+                a.psection(href="/registrar") Registrarse 
+        section    
+            p   
+                a.psection(href="/iniciarsesion") Iniciar Secion    
+        //- form(method="GET" action="/registrar") 
+        //-     input.btn-grande.input(type="submit" value="Login")
+        //- form(method="GET" action="/iniciarsesion")
+        //-     input.btn-grande.input(type="submit" value="iniciarsesion")
+            
     asside.panel
         nav.menu
             ul 
